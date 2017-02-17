@@ -15,3 +15,23 @@ LabelPath = 'C:\Users\Manoj\Desktop\Facial-Expression-Recognition-master\Facial-
 [NumTestImg,TestImg] = loadImage( TestImagePath );
 
 [C,minDist,minDistIndex] = eigenFaceRecognition(TrainImg,TestImg,NumTrainImg,NumTestImg );
+
+% Display the result
+RecognizedExpression = strcat(int2str(minDistIndex),'.jpg');
+    % read in the image label
+    fid=fopen(LabelPath);
+    imageLabel=textscan(fid,'%s %s','whitespace',',');
+    fclose(fid);
+    
+    % export the matched label
+    Best_Match = cell2mat(imageLabel{1,1}(minDistIndex));
+    ExprLabel = cell2mat(imageLabel{1,2}(minDistIndex));
+
+str1 = strcat('Your face expression is like this one:  ',RecognizedExpression);
+str2 = strcat('It tells me that you are:  ',ExprLabel);
+disp(str1)
+disp(str2)
+
+%SelectedImage = strcat(TrainImagePath,'\',RecognizedExpression);
+%SelectedImage = imread(SelectedImage);
+%imshow(SelectedImage)
