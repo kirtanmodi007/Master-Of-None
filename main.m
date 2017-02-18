@@ -1,11 +1,8 @@
-
-
 disp('Face Expression Recognition Demo Using the Eigenface Method')
 
-
-TrainImagePath = 'C:\Users\Manoj\Desktop\master_of_none\newemoji\Facial-Expression-Recognition-master\Project Code\TrainingImage';
-TestImagePath = 'C:\Users\Manoj\Desktop\master_of_none\newemoji\Facial-Expression-Recognition-master\Project Code\TestImage';
-LabelPath = 'C:\Users\Manoj\Desktop\master_of_none\newemoji\Facial-Expression-Recognition-master\Project Code\ImageLabel.txt';
+TrainImagePath = 'E:\hackathon\newemoji\Facial-Expression-Recognition-master\Project Code\TrainingImage';
+TestImagePath = 'E:\hackathon\newemoji\Facial-Expression-Recognition-master\Project Code\TestImage';
+LabelPath = 'E:\hackathon\newemoji\Facial-Expression-Recognition-master\Project Code\ImageLabel.txt';
 
 [NumTrainImg,TrainImg] = loadImage( TrainImagePath );
 [NumTestImg,TestImg] = loadImage( TestImagePath );
@@ -18,18 +15,14 @@ RecognizedExpression = strcat(int2str(minDistIndex),'.jpg');
     fid=fopen(LabelPath);
     imageLabel=textscan(fid,'%s %s','whitespace',',');
     fclose(fid);
-    
-    % export the matched label
     Best_Match = cell2mat(imageLabel{1,1}(minDistIndex));
- 
-
 
 for i=1:length(minDistIndex)
-    str1 = strcat('Your face expression is like this one:  ',RecognizedExpression(i));
-       ExprLabel = cell2mat(imageLabel{1,2}(minDistIndex(i)));
+    %str1 = strcat('Your face expression is like this one:  ',RecognizedExpression(i));
+    ExprLabel = cell2mat(imageLabel{1,2}(minDistIndex(i)));
 
     str2 = strcat('It tells me that you are:  ',ExprLabel);
-    disp(str1)
-
-   disp(str2)
+    %disp(str1)
+    disp(str2)
 end
+songs(ExprLabel)
